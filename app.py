@@ -46,12 +46,15 @@ class Instagram:
         print(links)
         
         for link in links:
-            bot.get(link)
+            try:
+                bot.get(link)
 
-            bot.find_element_by_class_name('dCJp8').click()
-            
-            time.sleep(10)
-            
+                bot.find_element_by_class_name('dCJp8').click()
+                
+                time.sleep(10)
+            except Exception as e:
+                time.sleep(60)
+                print(e)
       
 
         

@@ -63,6 +63,6 @@ class Instagram:
        
     
 
-ezb = Instagram('addyourusernamehere', 'addyourpwdhere')
-ezb.login() 
-ezb.find_posts('addyourhashtaghere')
+ig_user = Instagram('add_your_username_here', 'add_your_password_here')
+ig_user.login() 
+ig_user.find_posts('add_your_hashtag_here')

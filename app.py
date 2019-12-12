@@ -13,7 +13,7 @@ class Instagram:
     def login(self):
         bot = self.bot
         bot.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
-        time.sleep(5)
+        time.sleep(10)
         print('ready to go')
         email = bot.find_element_by_name('username')
         pwd = bot.find_element_by_name('password')
@@ -31,7 +31,7 @@ class Instagram:
 
         time.sleep(5)
 
-        for i in range (1,5):
+        for i in range (1,20):
             bot.execute_script('window.scrollTo(0, document.body.scrollHeight)')
             time.sleep(3)
         
@@ -42,19 +42,22 @@ class Instagram:
         for element in grid_elements:
             link = element.find_element_by_tag_name('a').get_attribute('href')
             links.append(link)
-        
-        print(links)
-        
+        print('todos os links:  ', len(links))
+        time.sleep(60)
+        counter = 0
         for link in links:
             try:
                 bot.get(link)
 
                 bot.find_element_by_class_name('dCJp8').click()
-                
+                counter +=1
+                print(counter, ' likes')
                 time.sleep(10)
             except Exception as e:
                 time.sleep(60)
                 print(e)
+            if counter % 30 == 0:
+                time.sleep(300)
       
 
         
@@ -65,7 +68,3 @@ class Instagram:
         
        
     
-
-ig_user = Instagram('add_your_username_here', 'add_your_password_here')
-ig_user.login() 
-ig_user.find_posts('add_your_hashtag_here')
